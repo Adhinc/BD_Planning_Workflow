@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BD & Planning Workflow System | Interactive Case Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Soothing Neutrals with Electric Accents" -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey, transforming the linear case study into an engaging, exploratory experience. It starts with the core problem, presents the two-sided pain points, unveils the dual-MVP solution through interactive mockups, visualizes success with dynamic charts, and lays out the execution with a timeline. This structure was chosen over a simple document replication to make the strategic solution more tangible and compelling for stakeholders, allowing them to grasp the 'why', 'what', and 'how' in a non-linear, interactive fashion. -->
+    <!-- Visualization & Content Choices: 
+        - Problem Analysis: Report Info -> BD/Planning pain points & 5 Whys. Goal -> Compare & drill down. Viz -> Two-column layout with interactive toggle cards for detailed analysis. Justification -> Instantly shows the two-sided nature of the problem and allows for deeper, optional exploration without cluttering the main view. Method -> HTML/CSS with JS for toggling visibility.
+        - MVP Solution: Report Info -> Features of the two proposed dashboards. Goal -> Demonstrate the solution's functionality. Viz -> Interactive tabs with mock UI diagrams. Justification -> Makes the abstract software concepts concrete and easy to understand. The mockups visually explain the tool's purpose. Method -> HTML/Tailwind for diagrams, JS for tab switching.
+        - Success Metrics: Report Info -> KPI list for BD & Planning. Goal -> Show impact and track progress. Viz -> A dashboard of dynamic, interactive Chart.js charts (Line, Doughnut, Bar). Justification -> Translates a dry list of metrics into a visually compelling dashboard that shows trends and goal attainment, making the potential success of the project palpable. Library -> Chart.js (Canvas).
+        - Execution Plan: Report Info -> Phased rollout strategy. Goal -> Illustrate the project timeline. Viz -> A horizontal, interactive timeline. Justification -> More engaging and scannable than a list of phases, clearly showing the project's progression. Method -> HTML/Tailwind with JS for hover effects.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-container { position: relative; width: 100%; height: 320px; max-height: 40vh; }
+        .nav-link { transition: all 0.3s ease; }
+        .nav-link.active { color: #4f46e5; border-bottom-color: #4f46e5; }
+        .nav-link:not(.active) { border-bottom-color: transparent; }
+        .card-flip { transform-style: preserve-3d; transition: transform 0.6s; }
+        .card-flip.is-flipped { transform: rotateY(180deg); }
+        .card-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .card-back { transform: rotateY(180deg); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active { background-color: #4f46e5; color: #ffffff; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-indigo-600">Workflow Solution</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#problem" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2">The Problem</a>
+                        <a href="#solution" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2">The Solution</a>
+                        <a href="#metrics" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2">Success Metrics</a>
+                        <a href="#execution" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2">Execution Plan</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        
+        <section class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4">Bridging the Gap Between Planning and Business Development</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">An interactive breakdown of a product strategy to solve the disconnect between asset planning and demand generation in an EV battery swapping company, aligning teams to drive our north-star metric: daily energy sold.</p>
+        </section>
+
+        <section id="problem" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900">Diagnosing the Disconnect</h3>
+                <p class="mt-2 text-md text-gray-600 max-w-2xl mx-auto">The core issue is a lack of a shared reality. Teams operate in silos, leading to friction, inefficiency, and dissatisfied partners. Below are the top problems faced by each team.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold text-center mb-4 text-sky-700">Planning Team's Pain Points</h4>
+                    <div id="planning-card" class="relative card-flip h-64">
+                        <div class="absolute w-full h-full card-face bg-sky-50 p-6 rounded-lg border border-sky-200">
+                            <ul class="space-y-4 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-sky-500 font-bold mr-3 mt-1">&#128269;</span>
+                                    <div><strong class="font-semibold">No Demand Visibility:</strong> Relying on pen and paper, the team cannot forecast demand accurately.</div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-sky-500 font-bold mr-3 mt-1">&#128176;</span>
+                                    <div><strong class="font-semibold">Inefficient Asset Allocation:</strong> Without forecasts, assets are misplaced, causing overcrowding and underutilization.</div>
+                                </li>
+                            </ul>
+                            <button onclick="flipCard('planning-card')" class="absolute bottom-4 right-4 text-sm text-sky-600 font-medium hover:underline">See 5 Whys Analysis &rarr;</button>
+                        </div>
+                        <div class="absolute w-full h-full card-face card-back bg-sky-100 p-6 rounded-lg border border-sky-300">
+                            <h5 class="font-semibold mb-2">Root Cause: "Why is there no demand signal?"</h5>
+                            <p class="text-xs text-gray-600 leading-snug">No structured BD input &rarr; Sales process isn't integrated &rarr; No system to translate pipeline to demand &rarr; Teams work in isolation &rarr; Org design hasn't kept up with growth.</p>
+                            <button onclick="flipCard('planning-card')" class="absolute bottom-4 right-4 text-sm text-sky-600 font-medium hover:underline">&larr; Back to Problems</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold text-center mb-4 text-amber-700">BD Team's Pain Points</h4>
+                     <div id="bd-card" class="relative card-flip h-64">
+                        <div class="absolute w-full h-full card-face bg-amber-50 p-6 rounded-lg border border-amber-200">
+                             <ul class="space-y-4 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-amber-500 font-bold mr-3 mt-1">&#128542;</span>
+                                    <div><strong class="font-semibold">Broken Promises & Data Mismatches:</strong> Promising stations where there are no assets erodes partner trust and complicates reconciliation.</div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-500 font-bold mr-3 mt-1">&#128274;</span>
+                                    <div><strong class="font-semibold">No Real-time Availability Info:</strong> Inability to see asset availability leads to unrealistic commitments with clients.</div>
+                                </li>
+                            </ul>
+                            <button onclick="flipCard('bd-card')" class="absolute bottom-4 right-4 text-sm text-amber-600 font-medium hover:underline">See 5 Whys Analysis &rarr;</button>
+                        </div>
+                        <div class="absolute w-full h-full card-face card-back bg-amber-100 p-6 rounded-lg border border-amber-300">
+                            <h5 class="font-semibold mb-2">Root Cause: "Why does BD overpromise?"</h5>
+                            <p class="text-xs text-gray-600 leading-snug">Doesn't know asset capacity &rarr; No single source of truth &rarr; Siloed, manual info &rarr; No integrated workflow &rarr; Organic growth outpaced process.</p>
+                            <button onclick="flipCard('bd-card')" class="absolute bottom-4 right-4 text-sm text-amber-600 font-medium hover:underline">&larr; Back to Problems</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900">A Two-Part MVP Solution</h3>
+                <p class="mt-2 text-md text-gray-600 max-w-2xl mx-auto">The solution is a unified digital platform creating a single source of truth. It consists of two tailored interfaces, one for each team, designed to synchronize their workflows.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="mb-6 border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                        <button class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent" data-tab="planning-mvp">
+                            For Planning Team: Asset & Demand Dashboard
+                        </button>
+                        <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="bd-mvp">
+                            For BD Team: Partner & Location Planner
+                        </button>
+                    </nav>
+                </div>
+
+                <div id="planning-mvp" class="tab-content active">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-2 text-gray-800">Asset & Demand Dashboard</h4>
+                            <p class="text-gray-600 mb-4">This dashboard gives the Planning team a live, data-driven view of both supply (assets) and demand (BD pipeline), enabling proactive and efficient allocation.</p>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Real-time asset inventory map.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Structured demand signals from BD.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Capacity planning and utilization heatmaps.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Bonus: AI-driven demand forecasting & optimal site suggestions.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
+                           <div class="w-full h-64 bg-white rounded shadow-inner p-2 flex flex-col">
+                               <div class="text-xs font-bold text-gray-500 mb-1">Planning Dashboard</div>
+                               <div class="flex-grow grid grid-cols-3 gap-2">
+                                   <div class="col-span-2 bg-gray-200 rounded p-1 flex flex-col justify-end">
+                                       <div class="text-xxs text-gray-500">Demand Heatmap</div>
+                                       <div class="w-full h-2/3 bg-gradient-to-t from-red-300 via-yellow-200 to-green-200 rounded-sm"></div>
+                                   </div>
+                                   <div class="bg-gray-200 rounded p-1 flex flex-col">
+                                       <div class="text-xxs text-gray-500">Asset Status</div>
+                                       <div class="h-4 bg-green-400 my-1 rounded-sm w-full"></div>
+                                       <div class="h-4 bg-yellow-400 my-1 rounded-sm w-3/4"></div>
+                                       <div class="h-4 bg-red-400 my-1 rounded-sm w-1/2"></div>
+                                   </div>
+                                   <div class="col-span-3 bg-gray-200 rounded p-1">
+                                       <div class="text-xxs text-gray-500">Incoming Demand Signals</div>
+                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-full"></div>
+                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-full"></div>
+                                   </div>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="bd-mvp" class="tab-content">
+                     <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-2 text-gray-800">Partner & Location Planner</h4>
+                            <p class="text-gray-600 mb-4">This tool empowers the BD team to make data-informed promises, check real-time availability, and track deals, ensuring alignment with planning from day one.</p>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Live station availability lookup.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Partner deal tracker feeding directly into Planning's view.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Data reconciliation view to share with partners.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
+                           <div class="w-full h-64 bg-white rounded shadow-inner p-2 flex flex-col">
+                               <div class="text-xs font-bold text-gray-500 mb-1">BD Deal Planner</div>
+                               <div class="flex-grow grid grid-cols-3 gap-2">
+                                    <div class="bg-gray-200 rounded p-1 flex flex-col">
+                                       <div class="text-xxs text-gray-500">Location Availability</div>
+                                       <input type="text" placeholder="Search Area..." class="text-xs p-1 rounded-sm border-gray-300 w-full mt-1">
+                                       <div class="mt-2 p-2 bg-green-200 text-green-800 text-xs rounded-sm">Status: Available</div>
+                                   </div>
+                                   <div class="col-span-2 bg-gray-200 rounded p-1">
+                                       <div class="text-xxs text-gray-500">Active Deals</div>
+                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-full"></div>
+                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-3/4"></div>
+                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-full"></div>
+                                   </div>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="metrics" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900">Measuring Success</h3>
+                <p class="mt-2 text-md text-gray-600 max-w-2xl mx-auto">We'll track a core set of input metrics that directly influence our north-star. Success is a visible, measurable improvement in efficiency and satisfaction.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-lg font-semibold mb-2 text-center">Station Utilization Rate</h4>
+                    <p class="text-xs text-center text-gray-500 mb-4">Shows if assets are in the right place. Goal: Upward trend.</p>
+                    <div class="chart-container">
+                        <canvas id="utilizationChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-lg font-semibold mb-2 text-center">Data Mismatch Incidents</h4>
+                    <p class="text-xs text-center text-gray-500 mb-4">Measures partner trust & data accuracy. Goal: Downward trend.</p>
+                    <div class="chart-container">
+                        <canvas id="mismatchChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-lg font-semibold mb-2 text-center">Partner Satisfaction (NPS)</h4>
+                    <p class="text-xs text-center text-gray-500 mb-4">Directly measures partner sentiment. Goal: More promoters.</p>
+                    <div class="chart-container">
+                        <canvas id="npsChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-lg font-semibold mb-2 text-center">BD Pipeline Conversion Rate</h4>
+                    <p class="text-xs text-center text-gray-500 mb-4">Measures efficiency of the deal-to-deployment process.</p>
+                    <div class="chart-container">
+                        <canvas id="conversionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="execution" class="scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900">0-to-1 Launch Strategy</h3>
+                <p class="mt-2 text-md text-gray-600 max-w-2xl mx-auto">A phased "crawl, walk, run" approach focused on delivering value quickly, building trust, and iterating based on feedback before scaling complexity.</p>
+            </div>
+            <div class="relative">
+                <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-300 -translate-y-1/2"></div>
+                <div class="relative grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="group relative text-center">
+                        <div class="w-8 h-8 mx-auto bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold z-10 relative">1</div>
+                        <h4 class="font-semibold mt-4">Phase 0: Foundation</h4>
+                        <p class="text-sm text-gray-600">Weeks 1-4</p>
+                        <div class="absolute bottom-full mb-4 w-60 left-1/2 -translate-x-1/2 bg-white p-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <strong class="text-sm font-bold">Focus:</strong> Data cleanup and establishing a core asset database. Crucial for tool reliability.
+                        </div>
+                    </div>
+                    <div class="group relative text-center">
+                        <div class="w-8 h-8 mx-auto bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold z-10 relative">2</div>
+                        <h4 class="font-semibold mt-4">Phase 1: MVP Launch</h4>
+                        <p class="text-sm text-gray-600">Months 1-3</p>
+                        <div class="absolute bottom-full mb-4 w-60 left-1/2 -translate-x-1/2 bg-white p-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <strong class="text-sm font-bold">Focus:</strong> Launching core dashboards for shared visibility to a pilot group. Prioritize usability over features.
+                        </div>
+                    </div>
+                    <div class="group relative text-center">
+                        <div class="w-8 h-8 mx-auto bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold z-10 relative">3</div>
+                        <h4 class="font-semibold mt-4">Phase 2: Iterate</h4>
+                        <p class="text-sm text-gray-600">Months 3-6</p>
+                        <div class="absolute bottom-full mb-4 w-60 left-1/2 -translate-x-1/2 bg-white p-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <strong class="text-sm font-bold">Focus:</strong> Refine based on feedback, add reporting, and start collecting data for future ML models.
+                        </div>
+                    </div>
+                     <div class="group relative text-center">
+                        <div class="w-8 h-8 mx-auto bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold z-10 relative">4</div>
+                        <h4 class="font-semibold mt-4">Phase 3: Scale w/ AI</h4>
+                        <p class="text-sm text-gray-600">Months 6+</p>
+                        <div class="absolute bottom-full mb-4 w-60 left-1/2 -translate-x-1/2 bg-white p-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <strong class="text-sm font-bold">Focus:</strong> Integrate predictive forecasting and automation. Requires dedicated data science resources.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-sm">
+            <p>&copy; 2025 Workflow Solutions Inc. An Interactive Product Strategy.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            function flipCard(cardId) {
+                document.getElementById(cardId).classList.toggle('is-flipped');
+            }
+
+            window.flipCard = flipCard;
+            
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => item.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    const target = document.getElementById(tab.dataset.tab);
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    target.classList.add('active');
+                });
+            });
+
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const header = document.getElementById('header');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: `-${header.offsetHeight}px`,
+                threshold: 0.5
+            };
+        
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                    
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        if (navLink) {
+                           navLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+        
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            const chartDefaults = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 4
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#6b7280' }
+                    },
+                    y: {
+                        grid: { color: '#e5e7eb' },
+                        ticks: { color: '#6b7280' }
+                    }
+                }
+            };
+
+            const utilizationCtx = document.getElementById('utilizationChart').getContext('2d');
+            new Chart(utilizationCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Utilization Rate',
+                        data: [45, 48, 52, 60, 75, 85],
+                        borderColor: '#4f46e5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: { ...chartDefaults, scales: {...chartDefaults.scales, y: {...chartDefaults.scales.y, beginAtZero: true, suggestedMax: 100}}}
+            });
+
+            const mismatchCtx = document.getElementById('mismatchChart').getContext('2d');
+            new Chart(mismatchCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Mismatch Incidents',
+                        data: [25, 22, 20, 14, 8, 5],
+                        backgroundColor: '#f59e0b',
+                        borderRadius: 4
+                    }]
+                },
+                options: chartDefaults
+            });
+
+            const npsCtx = document.getElementById('npsChart').getContext('2d');
+            new Chart(npsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Promoters', 'Passives', 'Detractors'],
+                    datasets: [{
+                        label: 'NPS',
+                        data: [65, 20, 15],
+                        backgroundColor: ['#10b981', '#6b7280', '#ef4444'],
+                        borderWidth: 0,
+                    }]
+                },
+                options: { ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: true, position: 'bottom' } } }
+            });
+
+            const conversionCtx = document.getElementById('conversionChart').getContext('2d');
+            new Chart(conversionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Q1', 'Q2', 'Q3 (Post-MVP)', 'Q4'],
+                    datasets: [{
+                        label: 'Conversion Rate %',
+                        data: [30, 32, 45, 55],
+                        borderColor: '#0ea5e9',
+                        borderDash: [5, 5],
+                        backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: { ...chartDefaults, scales: {...chartDefaults.scales, y: {...chartDefaults.scales.y, beginAtZero: true, suggestedMax: 100}}}
+            });
+        });
+    </script>
+</body>
+</html>
