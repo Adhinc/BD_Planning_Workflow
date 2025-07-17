@@ -60,7 +60,7 @@
             <p class="max-w-3xl mx-auto text-lg text-gray-600">An interactive breakdown of a product strategy to solve the disconnect between asset planning and demand generation in an EV battery swapping company, aligning teams to drive our north-star metric: daily energy sold.</p>
         </section>
 
-        <section id="problem" class="mb-20 scroll-mt-20">
+        <section id="problem" class="mb-20 scroll-mt-24">
             <div class="text-center mb-12">
                 <h3 class="text-2xl md:text-3xl font-bold text-gray-900">Diagnosing the Disconnect</h3>
                 <p class="mt-2 text-md text-gray-600 max-w-2xl mx-auto">The core issue is a lack of a shared reality. Teams operate in silos, leading to friction, inefficiency, and dissatisfied partners. Below are the top problems faced by each team.</p>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="absolute w-full h-full card-face card-back bg-sky-100 p-6 rounded-lg border border-sky-300">
                             <h5 class="font-semibold mb-2">Root Cause: "Why is there no demand signal?"</h5>
-                            <p class="text-xs text-gray-600 leading-snug">No structured BD input &rarr; Sales process isn't integrated &rarr; No system to translate pipeline to demand &rarr; Teams work in isolation &rarr; Org design hasn't kept up with growth.</p>
+                            <p class="text-sm text-gray-600 leading-snug">No structured BD input &rarr; Sales process isn't integrated &rarr; No system to translate pipeline to demand &rarr; Teams work in isolation &rarr; Org design hasn't kept up with growth.</p>
                             <button onclick="flipCard('planning-card')" class="absolute bottom-4 right-4 text-sm text-sky-600 font-medium hover:underline">&larr; Back to Problems</button>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="absolute w-full h-full card-face card-back bg-amber-100 p-6 rounded-lg border border-amber-300">
                             <h5 class="font-semibold mb-2">Root Cause: "Why does BD overpromise?"</h5>
-                            <p class="text-xs text-gray-600 leading-snug">Doesn't know asset capacity &rarr; No single source of truth &rarr; Siloed, manual info &rarr; No integrated workflow &rarr; Organic growth outpaced process.</p>
+                            <p class="text-sm text-gray-600 leading-snug">Doesn't know asset capacity &rarr; No single source of truth &rarr; Siloed, manual info &rarr; No integrated workflow &rarr; Organic growth outpaced process.</p>
                             <button onclick="flipCard('bd-card')" class="absolute bottom-4 right-4 text-sm text-amber-600 font-medium hover:underline">&larr; Back to Problems</button>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
             </div>
         </section>
 
-        <section id="solution" class="mb-20 scroll-mt-20">
+        <section id="solution" class="mb-20 scroll-mt-24">
             <div class="text-center mb-12">
                 <h3 class="text-2xl md:text-3xl font-bold text-gray-900">A Two-Part MVP Solution</h3>
                 <p class="mt-2 text-md text-gray-600 max-w-2xl mx-auto">The solution is a unified digital platform creating a single source of truth. It consists of two tailored interfaces, one for each team, designed to synchronize their workflows.</p>
@@ -137,32 +137,44 @@
                     <div class="grid md:grid-cols-2 gap-8 items-center">
                         <div>
                             <h4 class="text-xl font-semibold mb-2 text-gray-800">Asset & Demand Dashboard</h4>
-                            <p class="text-gray-600 mb-4">This dashboard gives the Planning team a live, data-driven view of both supply (assets) and demand (BD pipeline), enabling proactive and efficient allocation.</p>
+                            <p class="text-gray-600 mb-4">This dashboard gives the Planning team a live, data-driven view of both supply (assets) and demand (BD pipeline), enabling proactive and efficient allocation. It integrates real-time asset data with incoming demand signals to optimize station deployment.</p>
                             <ul class="space-y-3 text-gray-700">
-                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Real-time asset inventory map.</li>
-                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Structured demand signals from BD.</li>
-                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Capacity planning and utilization heatmaps.</li>
-                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Bonus: AI-driven demand forecasting & optimal site suggestions.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> <strong class="font-semibold">Real-time Asset Inventory:</strong> A map-based view showing the live status and location of all stations, batteries, and vehicles (available, deployed, in maintenance).</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> <strong class="font-semibold">Structured Demand Signals:</strong> An integrated feed of potential demand from the BD team, including desired locations, expected daily swaps, and required deployment dates.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> <strong class="font-semibold">Capacity Planning & Utilization Heatmaps:</strong> Visual overlays on the map to identify current station density, available slots for new stations, and areas of high historical swap activity for strategic placement.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> <strong class="font-semibold">Bonus: AI-driven Forecasting:</strong> Incorporates ML models to predict future swap demand based on historical data, weather, and local events, suggesting optimal sites for new stations.</li>
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
-                           <div class="w-full h-64 bg-white rounded shadow-inner p-2 flex flex-col">
-                               <div class="text-xs font-bold text-gray-500 mb-1">Planning Dashboard</div>
-                               <div class="flex-grow grid grid-cols-3 gap-2">
-                                   <div class="col-span-2 bg-gray-200 rounded p-1 flex flex-col justify-end">
-                                       <div class="text-xxs text-gray-500">Demand Heatmap</div>
-                                       <div class="w-full h-2/3 bg-gradient-to-t from-red-300 via-yellow-200 to-green-200 rounded-sm"></div>
+                           <div class="w-full h-[360px] bg-white rounded shadow-inner p-3 flex flex-col">
+                               <div class="text-sm font-bold text-gray-700 mb-2">Planning Dashboard Overview</div>
+                               <div class="flex-grow grid grid-cols-3 gap-3">
+                                   <div class="col-span-2 bg-gray-200 rounded p-2 flex flex-col justify-between">
+                                       <div class="text-xs font-semibold text-gray-600 mb-1">Demand Heatmap & Asset Map</div>
+                                       <div class="w-full h-2/3 bg-gradient-to-t from-red-300 via-yellow-200 to-green-200 rounded-sm relative">
+                                           <span class="absolute top-1 left-1 text-xxs text-gray-700">📍 Station A (80% Util)</span>
+                                           <span class="absolute bottom-1 right-1 text-xxs text-gray-700">📍 Station B (30% Util)</span>
+                                       </div>
+                                       <div class="text-xxs text-gray-500 mt-1">Live asset locations & predicted demand.</div>
                                    </div>
-                                   <div class="bg-gray-200 rounded p-1 flex flex-col">
-                                       <div class="text-xxs text-gray-500">Asset Status</div>
-                                       <div class="h-4 bg-green-400 my-1 rounded-sm w-full"></div>
-                                       <div class="h-4 bg-yellow-400 my-1 rounded-sm w-3/4"></div>
-                                       <div class="h-4 bg-red-400 my-1 rounded-sm w-1/2"></div>
+                                   <div class="bg-gray-200 rounded p-2 flex flex-col">
+                                       <div class="text-xs font-semibold text-gray-600 mb-1">Asset Status Summary</div>
+                                       <div class="text-xxs text-gray-600 mb-1">Stations: <span class="font-bold text-green-600">120 Online</span></div>
+                                       <div class="text-xxs text-gray-600 mb-1">Batteries: <span class="font-bold text-yellow-600">300 Available</span></div>
+                                       <div class="text-xxs text-gray-600">Vehicles: <span class="font-bold text-blue-600">15 In-Transit</span></div>
+                                       <div class="mt-auto text-xxs text-gray-500">Real-time inventory counts.</div>
                                    </div>
-                                   <div class="col-span-3 bg-gray-200 rounded p-1">
-                                       <div class="text-xxs text-gray-500">Incoming Demand Signals</div>
-                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-full"></div>
-                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-full"></div>
+                                   <div class="col-span-3 bg-gray-200 rounded p-2">
+                                       <div class="text-xs font-semibold text-gray-600 mb-1">Incoming Demand Signals (BD)</div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
+                                           <span>Partner X - 3 Stations @ Central City</span>
+                                           <span class="font-bold">Due: Aug 15</span>
+                                       </div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded">
+                                           <span>Partner Y - 2 Stations @ Industrial Zone</span>
+                                           <span class="font-bold">Due: Sep 1</span>
+                                       </div>
+                                       <div class="mt-1 text-xxs text-gray-500">Structured requests for new deployments.</div>
                                    </div>
                                </div>
                            </div>
@@ -174,27 +186,51 @@
                      <div class="grid md:grid-cols-2 gap-8 items-center">
                         <div>
                             <h4 class="text-xl font-semibold mb-2 text-gray-800">Partner & Location Planner</h4>
-                            <p class="text-gray-600 mb-4">This tool empowers the BD team to make data-informed promises, check real-time availability, and track deals, ensuring alignment with planning from day one.</p>
+                            <p class="text-gray-600 mb-4">This tool empowers the BD team to make data-informed promises, check real-time availability, and track deals. It ensures that every commitment to a partner is aligned with the Planning team's capacity, fostering trust and efficient onboarding.</p>
                             <ul class="space-y-3 text-gray-700">
-                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Live station availability lookup.</li>
-                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Partner deal tracker feeding directly into Planning's view.</li>
-                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> Data reconciliation view to share with partners.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> <strong class="font-semibold">Live Station Availability Lookup:</strong> Allows BD to search for potential station locations and instantly see if Planning has assets available or projected availability in that area.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> <strong class="font-semibold">Integrated Partner Deal Tracker:</strong> A simplified CRM-like module to log new partner leads, proposed station locations, promised deployment dates, and expected daily swaps, directly feeding into Planning's system.</li>
+                                <li class="flex items-center"><span class="text-indigo-500 mr-2">&#10003;</span> <strong class="font-semibold">Transparent Data Reconciliation View:</strong> A read-only view for BD (and eventually partners) to see agreed-upon station details and historical swap data, minimizing data mismatches.</li>
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
-                           <div class="w-full h-64 bg-white rounded shadow-inner p-2 flex flex-col">
-                               <div class="text-xs font-bold text-gray-500 mb-1">BD Deal Planner</div>
-                               <div class="flex-grow grid grid-cols-3 gap-2">
-                                    <div class="bg-gray-200 rounded p-1 flex flex-col">
-                                       <div class="text-xxs text-gray-500">Location Availability</div>
+                           <div class="w-full h-[360px] bg-white rounded shadow-inner p-3 flex flex-col">
+                               <div class="text-sm font-bold text-gray-700 mb-2">BD Deal Planner Overview</div>
+                               <div class="flex-grow grid grid-cols-3 gap-3">
+                                    <div class="col-span-1 bg-gray-200 rounded p-2 flex flex-col">
+                                       <div class="text-xs font-semibold text-gray-600 mb-1">Location Availability</div>
                                        <input type="text" placeholder="Search Area..." class="text-xs p-1 rounded-sm border-gray-300 w-full mt-1">
-                                       <div class="mt-2 p-2 bg-green-200 text-green-800 text-xs rounded-sm">Status: Available</div>
+                                       <div class="mt-2 p-2 bg-green-200 text-green-800 text-xs rounded-sm font-semibold">Status: Available (2 slots)</div>
+                                       <div class="mt-1 p-2 bg-yellow-200 text-yellow-800 text-xs rounded-sm font-semibold">Next Avail: 3 weeks</div>
+                                       <div class="mt-auto text-xxs text-gray-500">Real-time capacity check.</div>
                                    </div>
-                                   <div class="col-span-2 bg-gray-200 rounded p-1">
-                                       <div class="text-xxs text-gray-500">Active Deals</div>
-                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-full"></div>
-                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-3/4"></div>
-                                       <div class="h-3 bg-indigo-300 my-1 rounded-sm w-full"></div>
+                                   <div class="col-span-2 bg-gray-200 rounded p-2">
+                                       <div class="text-xs font-semibold text-gray-600 mb-1">Active Partner Deals</div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
+                                           <span><strong class="font-semibold">Partner A:</strong> 5 Stations (Central)</span>
+                                           <span class="font-bold text-green-600">Deployed</span>
+                                       </div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
+                                           <span><strong class="font-semibold">Partner B:</strong> 3 Stations (North)</span>
+                                           <span class="font-bold text-yellow-600">Pending Planning</span>
+                                       </div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded">
+                                           <span><strong class="font-semibold">Partner C:</strong> 2 Stations (South)</span>
+                                           <span class="font-bold text-blue-600">In Progress</span>
+                                       </div>
+                                       <div class="mt-1 text-xxs text-gray-500">Track deal progress and status.</div>
+                                   </div>
+                                   <div class="col-span-3 bg-gray-200 rounded p-2">
+                                       <div class="text-xs font-semibold text-gray-600 mb-1">Data Reconciliation Preview</div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-gray-100 p-1 rounded mb-1">
+                                           <span>Station ID: XYZ123</span>
+                                           <span>Swaps (Jul): <span class="font-bold">1500 kWh</span></span>
+                                       </div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-gray-100 p-1 rounded">
+                                           <span>Station ID: ABC456</span>
+                                           <span>Swaps (Jul): <span class="font-bold">800 kWh</span></span>
+                                       </div>
+                                       <div class="mt-1 text-xxs text-gray-500">Pre-empts data mismatches with partners.</div>
                                    </div>
                                </div>
                            </div>
@@ -204,7 +240,7 @@
             </div>
         </section>
 
-        <section id="metrics" class="mb-20 scroll-mt-20">
+        <section id="metrics" class="mb-20 scroll-mt-24">
             <div class="text-center mb-12">
                 <h3 class="text-2xl md:text-3xl font-bold text-gray-900">Measuring Success</h3>
                 <p class="mt-2 text-md text-gray-600 max-w-2xl mx-auto">We'll track a core set of input metrics that directly influence our north-star. Success is a visible, measurable improvement in efficiency and satisfaction.</p>
@@ -241,7 +277,7 @@
             </div>
         </section>
 
-        <section id="execution" class="scroll-mt-20">
+        <section id="execution" class="scroll-mt-24">
             <div class="text-center mb-12">
                 <h3 class="text-2xl md:text-3xl font-bold text-gray-900">0-to-1 Launch Strategy</h3>
                 <p class="mt-2 text-md text-gray-600 max-w-2xl mx-auto">A phased "crawl, walk, run" approach focused on delivering value quickly, building trust, and iterating based on feedback before scaling complexity.</p>
@@ -436,3 +472,4 @@
     </script>
 </body>
 </html>
+
