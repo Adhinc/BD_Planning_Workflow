@@ -146,44 +146,46 @@
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
-                           <div class="w-full min-h-[360px] bg-white rounded shadow-inner p-3 flex flex-col justify-between">
+                           <div class="w-full min-h-[500px] bg-white rounded shadow-inner p-3 flex flex-col">
                                <div class="text-sm font-bold text-gray-700 mb-2">Planning Dashboard Overview</div>
-                               <div class="flex-grow grid grid-cols-3 gap-3 mb-3">
-                                   <div class="col-span-2 bg-gray-200 rounded p-2 flex flex-col justify-between">
-                                       <div class="text-xs font-semibold text-gray-600 mb-1">Demand Heatmap & Asset Map</div>
-                                       <div class="w-full h-2/3 bg-gradient-to-t from-red-300 via-yellow-200 to-green-200 rounded-sm relative">
-                                           <span class="absolute top-1 left-1 text-xxs text-gray-700">📍 Station A (80% Util)</span>
-                                           <span class="absolute bottom-1 right-1 text-xxs text-gray-700">📍 Station B (30% Util)</span>
+                               <div class="flex-grow flex flex-col gap-3">
+                                   <div class="grid grid-cols-3 gap-3 flex-shrink-0">
+                                       <div class="col-span-2 bg-gray-200 rounded p-2 flex flex-col justify-between">
+                                           <div class="text-xs font-semibold text-gray-600 mb-1">Demand Heatmap & Asset Map</div>
+                                           <div class="w-full h-2/3 bg-gradient-to-t from-red-300 via-yellow-200 to-green-200 rounded-sm relative">
+                                               <span class="absolute top-1 left-1 text-xxs text-gray-700">📍 Station A (80% Util)</span>
+                                               <span class="absolute bottom-1 right-1 text-xxs text-gray-700">📍 Station B (30% Util)</span>
+                                           </div>
+                                           <div class="text-xxs text-gray-500 mt-1">Live asset locations & predicted demand.</div>
                                        </div>
-                                       <div class="text-xxs text-gray-500 mt-1">Live asset locations & predicted demand.</div>
-                                   </div>
-                                   <div class="flex flex-col gap-3">
-                                       <div class="bg-gray-200 rounded p-2 flex flex-col flex-grow">
-                                           <div class="text-xs font-semibold text-gray-600 mb-1">Asset Status Summary</div>
-                                           <div class="text-xxs text-gray-600 mb-1">Stations: <span class="font-bold text-green-600">120 Online</span></div>
-                                           <div class="text-xxs text-gray-600 mb-1">Batteries: <span class="font-bold text-yellow-600">300 Available</span></div>
-                                           <div class="text-xxs text-gray-600">Vehicles: <span class="font-bold text-blue-600">15 In-Transit</span></div>
-                                           <div class="mt-auto text-xxs text-gray-500">Real-time inventory counts.</div>
+                                       <div class="flex flex-col gap-3">
+                                           <div class="bg-gray-200 rounded p-2 flex flex-col flex-grow">
+                                               <div class="text-xs font-semibold text-gray-600 mb-1">Asset Status Summary</div>
+                                               <div class="text-xxs text-gray-600 mb-1">Stations: <span class="font-bold text-green-600">120 Online</span></div>
+                                               <div class="text-xxs text-gray-600 mb-1">Batteries: <span class="font-bold text-yellow-600">300 Available</span></div>
+                                               <div class="text-xxs text-gray-600">Vehicles: <span class="font-bold text-blue-600">15 In-Transit</span></div>
+                                               <div class="mt-auto text-xxs text-gray-500">Real-time inventory counts.</div>
+                                           </div>
+                                           <div class="bg-gray-200 rounded p-2 flex flex-col flex-grow">
+                                               <div class="text-xs font-semibold text-gray-600 mb-1">AI Insights</div>
+                                               <div class="text-xxs text-gray-600 mb-1">Next 7-day forecast: <span class="font-bold text-indigo-600">High Demand Central</span></div>
+                                               <div class="text-xxs text-gray-600">Optimal site suggestion: <span class="font-bold text-indigo-600">New Town Square</span></div>
+                                               <div class="mt-auto text-xxs text-gray-500">ML-driven predictions.</div>
+                                           </div>
                                        </div>
-                                       <div class="bg-gray-200 rounded p-2 flex flex-col flex-grow">
-                                           <div class="text-xs font-semibold text-gray-600 mb-1">AI Insights</div>
-                                           <div class="text-xxs text-gray-600 mb-1">Next 7-day forecast: <span class="font-bold text-indigo-600">High Demand Central</span></div>
-                                           <div class="text-xxs text-gray-600">Optimal site suggestion: <span class="font-bold text-indigo-600">New Town Square</span></div>
-                                           <div class="mt-auto text-xxs text-gray-500">ML-driven predictions.</div>
+                                   </div>
+                                   <div class="bg-gray-200 rounded p-2 flex-shrink-0">
+                                       <div class="text-xs font-semibold text-gray-600 mb-1">Incoming Demand Signals (BD)</div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
+                                           <span>Partner X - 3 Stations @ Central City</span>
+                                           <span class="font-bold">Due: Aug 15</span>
                                        </div>
+                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded">
+                                           <span>Partner Y - 2 Stations @ Industrial Zone</span>
+                                           <span class="font-bold">Due: Sep 1</span>
+                                       </div>
+                                       <div class="mt-1 text-xxs text-gray-500">Structured requests for new deployments.</div>
                                    </div>
-                               </div>
-                               <div class="col-span-3 bg-gray-200 rounded p-2">
-                                   <div class="text-xs font-semibold text-gray-600 mb-1">Incoming Demand Signals (BD)</div>
-                                   <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
-                                       <span>Partner X - 3 Stations @ Central City</span>
-                                       <span class="font-bold">Due: Aug 15</span>
-                                   </div>
-                                   <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded">
-                                       <span>Partner Y - 2 Stations @ Industrial Zone</span>
-                                       <span class="font-bold">Due: Sep 1</span>
-                                   </div>
-                                   <div class="mt-1 text-xxs text-gray-500">Structured requests for new deployments.</div>
                                </div>
                            </div>
                         </div>
@@ -202,33 +204,35 @@
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
-                           <div class="w-full h-[360px] bg-white rounded shadow-inner p-3 flex flex-col">
+                           <div class="w-full min-h-[500px] bg-white rounded shadow-inner p-3 flex flex-col">
                                <div class="text-sm font-bold text-gray-700 mb-2">BD Deal Planner Overview</div>
-                               <div class="flex-grow grid grid-cols-3 gap-3">
-                                    <div class="col-span-1 bg-gray-200 rounded p-2 flex flex-col">
-                                       <div class="text-xs font-semibold text-gray-600 mb-1">Location Availability</div>
-                                       <input type="text" placeholder="Search Area..." class="text-xs p-1 rounded-sm border-gray-300 w-full mt-1">
-                                       <div class="mt-2 p-2 bg-green-200 text-green-800 text-xs rounded-sm font-semibold">Status: Available (2 slots)</div>
-                                       <div class="mt-1 p-2 bg-yellow-200 text-yellow-800 text-xs rounded-sm font-semibold">Next Avail: 3 weeks</div>
-                                       <div class="mt-auto text-xxs text-gray-500">Real-time capacity check.</div>
+                               <div class="flex-grow flex flex-col gap-3">
+                                    <div class="grid grid-cols-3 gap-3 flex-shrink-0">
+                                        <div class="col-span-1 bg-gray-200 rounded p-2 flex flex-col">
+                                           <div class="text-xs font-semibold text-gray-600 mb-1">Location Availability</div>
+                                           <input type="text" placeholder="Search Area..." class="text-xs p-1 rounded-sm border-gray-300 w-full mt-1">
+                                           <div class="mt-2 p-2 bg-green-200 text-green-800 text-xs rounded-sm font-semibold">Status: Available (2 slots)</div>
+                                           <div class="mt-1 p-2 bg-yellow-200 text-yellow-800 text-xs rounded-sm font-semibold">Next Avail: 3 weeks</div>
+                                           <div class="mt-auto text-xxs text-gray-500">Real-time capacity check.</div>
+                                       </div>
+                                       <div class="col-span-2 bg-gray-200 rounded p-2">
+                                           <div class="text-xs font-semibold text-gray-600 mb-1">Active Partner Deals</div>
+                                           <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
+                                               <span><strong class="font-semibold">Partner A:</strong> 5 Stations (Central)</span>
+                                               <span class="font-bold text-green-600">Deployed</span>
+                                           </div>
+                                           <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
+                                               <span><strong class="font-semibold">Partner B:</strong> 3 Stations (North)</span>
+                                               <span class="font-bold text-yellow-600">Pending Planning</span>
+                                           </div>
+                                           <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded">
+                                               <span><strong class="font-semibold">Partner C:</strong> 2 Stations (South)</span>
+                                               <span class="font-bold text-blue-600">In Progress</span>
+                                           </div>
+                                           <div class="mt-1 text-xxs text-gray-500">Track deal progress and status.</div>
+                                       </div>
                                    </div>
-                                   <div class="col-span-2 bg-gray-200 rounded p-2">
-                                       <div class="text-xs font-semibold text-gray-600 mb-1">Active Partner Deals</div>
-                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
-                                           <span><strong class="font-semibold">Partner A:</strong> 5 Stations (Central)</span>
-                                           <span class="font-bold text-green-600">Deployed</span>
-                                       </div>
-                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded mb-1">
-                                           <span><strong class="font-semibold">Partner B:</strong> 3 Stations (North)</span>
-                                           <span class="font-bold text-yellow-600">Pending Planning</span>
-                                       </div>
-                                       <div class="flex items-center justify-between text-xxs text-gray-700 bg-indigo-100 p-1 rounded">
-                                           <span><strong class="font-semibold">Partner C:</strong> 2 Stations (South)</span>
-                                           <span class="font-bold text-blue-600">In Progress</span>
-                                       </div>
-                                       <div class="mt-1 text-xxs text-gray-500">Track deal progress and status.</div>
-                                   </div>
-                                   <div class="col-span-3 bg-gray-200 rounded p-2">
+                                   <div class="bg-gray-200 rounded p-2 flex-shrink-0">
                                        <div class="text-xs font-semibold text-gray-600 mb-1">Data Reconciliation Preview</div>
                                        <div class="flex items-center justify-between text-xxs text-gray-700 bg-gray-100 p-1 rounded mb-1">
                                            <span>Station ID: XYZ123</span>
@@ -427,7 +431,32 @@
                         tension: 0.4
                     }]
                 },
-                options: { ...chartDefaults, scales: {...chartDefaults.scales, y: {...chartDefaults.scales.y, beginAtZero: true, suggestedMax: 100}}}
+                options: { 
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10,
+                            cornerRadius: 4
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#6b7280' }
+                        },
+                        y: {
+                            grid: { color: '#e5e7eb' },
+                            ticks: { color: '#6b7280' },
+                            beginAtZero: true,
+                            suggestedMax: 100
+                        }
+                    }
+                }
             });
 
             const mismatchCtx = document.getElementById('mismatchChart').getContext('2d');
@@ -474,7 +503,32 @@
                         fill: true
                     }]
                 },
-                options: { ...chartDefaults, scales: {...chartDefaults.scales.y, beginAtZero: true, suggestedMax: 100}}}
+                options: { 
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10,
+                            cornerRadius: 4
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#6b7280' }
+                        },
+                        y: {
+                            grid: { color: '#e5e7eb' },
+                            ticks: { color: '#6b7280' },
+                            beginAtZero: true,
+                            suggestedMax: 100
+                        }
+                    }
+                }
             });
         });
     </script>
